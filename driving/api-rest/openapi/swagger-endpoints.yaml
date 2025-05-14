@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: Swagger custom endpoints
+  description: Swagger custom endpoints
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8080'
+tags:
+  - name: swagger
+    description: Swagger endpoints
+paths:
+  /docs:
+    get:
+      tags:
+        - swagger
+      summary: Method to retrieve swagger info
+      description: This method retrieves swagger info in JSON format
+      operationId: getDocsSwagger
+      responses:
+        302:
+          description: Redirect
+  /swagger-ui/{id}:
+    get:
+      tags:
+        - swagger
+      summary: Method to retrieve swagger info
+      description: This method retrieves swagger info in JSON format
+      operationId: getIndexSwagger
+      parameters:
+        - name: id
+          in: path
+          description: id
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            text/html:
+              schema:
+                type: string
+  /v3/api-docs/{id}:
+    get:
+      tags:
+        - swagger
+      summary: Method to retrieve swagger info
+      description: This method retrieves swagger info in JSON format
+      operationId: getIndexSwagger
+      parameters:
+        - name: id
+          in: path
+          description: id
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            text/html:
+              schema:
+                type: string
+  /v3/api-docs:
+    get:
+      tags:
+        - swagger
+      summary: Method to retrieve swagger info
+      description: This method retrieves swagger info in JSON format
+      operationId: getJsonSwagger
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /v3/api-docs.yaml:
+    get:
+      tags:
+        - swagger
+      summary: Method to retrieve swagger info
+      description: This method retrieves swagger info in YAML format
+      operationId: getYamlSwagger
+      responses:
+        200:
+          description: OK
+          content:
+            application/x-yaml:
+              schema:
+                type: object
