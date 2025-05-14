@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>boot</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${project.groupId} - ${project.artifactId}</name>
+
+    <parent>
+        <groupId>com.bcnc.prueba</groupId>
+        <artifactId>bcnc_itx_hex_test_2025</artifactId>
+        <version>0.0.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.bcnc.prueba</groupId>
+            <artifactId>adapter-rest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bcnc.prueba</groupId>
+            <artifactId>adapter-database</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bcnc.prueba</groupId>
+            <artifactId>service</artifactId>
+        </dependency>
+
+        <!-- Frameworks and configurations -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>
