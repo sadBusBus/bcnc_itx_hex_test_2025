@@ -1,8 +1,8 @@
 package com.bcnc.prueba.application.adapter;
 
-import com.bcnc.prueba.application.adapter.api.PriceAPI;
+import com.bcnc.api.PriceApi;
+import com.bcnc.model.PriceDTO;
 import com.bcnc.prueba.application.mapper.PriceMapper;
-import com.bcnc.prueba.application.model.price.PriceDTO;
 import com.bcnc.prueba.application.ports.driving.PriceServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
 
 @RestController
 @RequiredArgsConstructor
-public class PriceController implements PriceAPI {
+public class PriceController implements PriceApi {
 
     private final PriceServicePort priceServicePort;
     private final PriceMapper priceMapper;

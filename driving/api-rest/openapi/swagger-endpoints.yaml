@@ -7,15 +7,15 @@ servers:
     - url: http://localhost:8080
       description: Generated server url
 tags:
-    - name: PriceApi
+    - name: Price
       description: Price API for price related calls
-    - name: EchoApi
+    - name: Echo
       description: API testeo CICD
 paths:
     /api/v1/price:
         get:
             tags:
-                - PriceApi
+                - Price
             summary: Te saluda.
             operationId: getPrice
             parameters:
@@ -77,7 +77,7 @@ paths:
     /api/v1/echo:
         get:
             tags:
-                - EchoApi
+                - Echo
             summary: Te saluda.
             operationId: greetings
             responses:
@@ -104,9 +104,11 @@ components:
                 startDate:
                     type: string
                     format: date-time
+                    x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssXXX")'
                 endDate:
                     type: string
                     format: date-time
+                    x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssXXX")'
                 price:
                     type: string
         ErrorResponseDto:

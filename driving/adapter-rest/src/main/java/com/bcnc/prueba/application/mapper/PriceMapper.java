@@ -1,6 +1,6 @@
 package com.bcnc.prueba.application.mapper;
 
-import com.bcnc.prueba.application.model.price.PriceDTO;
+import com.bcnc.model.PriceDTO;
 import com.bcnc.prueba.domain.model.Price;
 import org.mapstruct.Mapper;
 

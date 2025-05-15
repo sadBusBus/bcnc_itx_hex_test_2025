@@ -1,8 +1,8 @@
 package com.bcnc.prueba.adapter;
 
+import com.bcnc.model.PriceDTO;
 import com.bcnc.prueba.application.adapter.PriceController;
 import com.bcnc.prueba.application.mapper.PriceMapper;
-import com.bcnc.prueba.application.model.price.PriceDTO;
 import com.bcnc.prueba.application.ports.driving.PriceServicePort;
 import com.bcnc.prueba.domain.model.Price;
 import org.junit.jupiter.api.extension.ExtendWith;

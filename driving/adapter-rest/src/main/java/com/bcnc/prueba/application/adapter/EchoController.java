@@ -1,6 +1,6 @@
 package com.bcnc.prueba.application.adapter;
 
-import com.bcnc.prueba.application.adapter.api.EchoApi;
+import com.bcnc.api.EchoApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
