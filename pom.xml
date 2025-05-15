@@ -30,6 +30,9 @@
     <mapstruct.processor.version>1.5.3.Final</mapstruct.processor.version>
     <logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
 
+    <!-- Lombok/mapstruct Properties -->
+    <lombok.version>1.18.30</lombok.version>
+    <mapstruct.version>1.4.2.Final</mapstruct.version>
 
     <!-- JaCoCo Properties -->
     <jacoco.version>0.8.8</jacoco.version>
@@ -42,6 +45,7 @@
 
   </properties>
 
+  <!-- Modules hexagoanl -->
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -62,14 +66,30 @@
         <version>${project.version}</version>
       </dependency>
 
-      <dependency>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>${jacoco.version}</version>
-      </dependency>
-
     </dependencies>
   </dependencyManagement>
+
+  <!-- Global dependencies Properties -->
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>${jacoco.version}</version>
+    </dependency>
+
+  </dependencies>
 
   <modules>
     <module>driven/adapter-database</module>
