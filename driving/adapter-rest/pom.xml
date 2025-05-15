@@ -51,7 +51,7 @@
                         <goals>
                             <goal>generate</goal>
                         </goals>
-                        <confiontraguration>
+                        <configuration>
                             <inputSpec>driving/api-rest/openapi/swagger-endpoints.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <output>${project.build.directory}/generated-sources</output>
@@ -61,7 +61,7 @@
                                 <interfaceOnly>true</interfaceOnly>
                                 <useTags>true</useTags>
                             </configOptions>
-                        </confiontraguration>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
