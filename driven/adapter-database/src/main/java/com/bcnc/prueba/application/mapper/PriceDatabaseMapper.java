@@ -18,7 +18,7 @@ public interface PriceDatabaseMapper {
         if (priceEntity == null || priceEntity.getPrice() == null || priceEntity.getCurrency() == null) {
             return "";
         }
-        return priceEntity.getPrice() + priceEntity.getCurrency();
+        return priceEntity.getPrice() + " " + priceEntity.getCurrency();
     }
 
 }
