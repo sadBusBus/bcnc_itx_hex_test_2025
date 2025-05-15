@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "8e879d37-71f1-4ffd-882c-f0a13dd74c18",
+		"name": "itx prueba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44994424",
+		"_collection_link": "https://xd-9200066.postman.co/workspace/xd's-Workspace~aa3338a7-853d-413e-8a89-69b282e1b337/collection/44994424-8e879d37-71f1-4ffd-882c-f0a13dd74c18?action=share&source=collection_link&creator=44994424"
+	},
+	"item": [
+		{
+			"name": "getPrice",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/price?dateTime=2020-06-14T00:00:00Z&productId=35455&brandId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"price"
+					],
+					"query": [
+						{
+							"key": "dateTime",
+							"value": "2020-06-14T00:00:00Z"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "echo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/echo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"echo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
