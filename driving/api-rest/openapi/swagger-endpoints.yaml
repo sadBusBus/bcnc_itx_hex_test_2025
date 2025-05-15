@@ -111,6 +111,8 @@ components:
                     x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssXXX")'
                 price:
                     type: string
+                brandName:
+                    type: string
         ErrorResponseDto:
             type: object
             properties:

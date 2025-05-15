@@ -10,6 +10,7 @@ import org.mapstruct.Named;
 public interface PriceDatabaseMapper {
 
     @Mapping(source = "brandMO.id", target = "brandId")
+    @Mapping(source = "brandMO.name", target = "brandName")
     @Mapping(source = "priceEntity", target = "price", qualifiedByName = "getPriceFormated")
     Price toDomain(PriceMO priceEntity);
 

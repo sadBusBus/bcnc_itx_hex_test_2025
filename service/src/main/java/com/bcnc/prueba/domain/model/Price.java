@@ -17,4 +17,5 @@ public class Price {
     private OffsetDateTime startDate;
     private OffsetDateTime endDate;
     private String price;
+    private String brandName;
 }
