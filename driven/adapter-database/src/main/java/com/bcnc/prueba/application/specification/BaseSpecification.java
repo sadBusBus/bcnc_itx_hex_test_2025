@@ -19,11 +19,11 @@ public abstract class BaseSpecification<MO> implements Specification<MO> {
 
     protected final List<Predicate> predicates = new ArrayList<>();
 
-    protected void addPredicate(Predicate predicate) {
+    public void addPredicate(Predicate predicate) {
         predicates.add(predicate);
     }
 
-    protected Predicate buildPredicate(CriteriaBuilder cb) {
+    public Predicate buildPredicate(CriteriaBuilder cb) {
         return cb.and(predicates.toArray(new Predicate[0]));
     }
 }

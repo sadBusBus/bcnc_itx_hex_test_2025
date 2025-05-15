@@ -197,6 +197,11 @@
                         <version>${jacoco.version}</version>
                         <configuration>
                             <append>true</append>
+                            <excludes>
+                                <exclude>com/bcnc/**/*Aplicacion.*</exclude>
+                                <exclude>com/bcnc/**/*MapperImpl.*</exclude>
+                                <exclude>com/bcnc/**/*Enum.*</exclude>
+                            </excludes>
                         </configuration>
                         <executions>
                             <execution>

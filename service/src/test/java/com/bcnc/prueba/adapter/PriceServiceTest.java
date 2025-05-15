@@ -32,7 +32,7 @@ class PriceServiceTest {
 
     @ParameterizedTest
     @MethodSource("providePriceTestCases")
-    void testGetPrice_verifyDbPortCall(String dateTime) {
+    void testGetPriceVerifyDbPortCall(String dateTime) {
         // Arrange
         OffsetDateTime requestDateTime = OffsetDateTime.parse(dateTime);
         when(priceDbPort.getPrice(requestDateTime, PRODUCT_ID, BRAND_ID)).thenReturn(new Price());
