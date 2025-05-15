@@ -31,14 +31,15 @@ spring:
                 persistence:
                     lock:
                         timeout: 25000
-        hibernate.ddl-auto: create
+        hibernate.ddl-auto: none
         show-sql: true
         generate-ddl: false
         open-in-view: false
         database-platform: org.hibernate.dialect.H2Dialect
 
     flyway:
-        enabled: false
+        locations: classpath:sql/migration.versions
+        enabled: true
     mandatory-file-encoding: UTF-8
 
 server:
