@@ -15,6 +15,9 @@ public interface PriceDatabaseMapper {
 
     @Named("getPriceFormated")
     default String getPriceFormated(PriceMO priceEntity) {
+        if (priceEntity == null || priceEntity.getPrice() == null || priceEntity.getCurrency() == null) {
+            return "";
+        }
         return priceEntity.getPrice() + priceEntity.getCurrency();
     }
 

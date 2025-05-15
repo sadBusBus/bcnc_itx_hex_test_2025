@@ -1,9 +1,6 @@
 package com.bcnc.prueba.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 
@@ -11,6 +8,8 @@ import java.time.OffsetDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Price {
     private Long productId;
     private Long brandId;
