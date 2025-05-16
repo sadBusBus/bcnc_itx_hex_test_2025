@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -36,8 +38,15 @@ public class PriceIntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @BeforeAll
+    static void setUpBeforeAll() {
+        System.setProperty("file.encoding", StandardCharsets.UTF_8.name());
+        System.setProperty("sun.jnu.encoding", StandardCharsets.UTF_8.name());
+    }
+
     @BeforeEach
     void setUp() {
+
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
 

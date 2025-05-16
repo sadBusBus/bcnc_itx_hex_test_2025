@@ -3,6 +3,7 @@ springdoc:
     packages-to-scan: com.bcnc.prueba
 
 spring:
+    mandatoryFileEncoding: UTF-8
     output:
       ansi:
           enabled: always
