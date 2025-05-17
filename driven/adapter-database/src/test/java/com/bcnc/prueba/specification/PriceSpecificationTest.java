@@ -11,9 +11,8 @@ import org.mockito.MockitoAnnotations;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -57,6 +56,8 @@ class PriceSpecificationTest {
 
         // When
         Predicate result = specification.toPredicate(root, query, cb);
+
+        assertNull(result);
     }
 
     @Test
@@ -72,7 +73,7 @@ class PriceSpecificationTest {
         Predicate result = specification.toPredicate(root, query, cb);
 
         // Then
-        assertThat(result, is(notNullValue()));
+        assertNotNull(result);
     }
 
     @Test
@@ -87,7 +88,7 @@ class PriceSpecificationTest {
         Predicate result = specification.toPredicate(root, query, cb);
 
         // Then
-        assertThat(result, is(notNullValue()));
+        assertNotNull(result);
     }
 
     @Test
@@ -102,7 +103,7 @@ class PriceSpecificationTest {
         Predicate result = specification.toPredicate(root, query, cb);
 
         // Then
-        assertThat(result, is(notNullValue()));
+        assertNotNull(result);
     }
 
     @Test
@@ -128,5 +129,8 @@ class PriceSpecificationTest {
 
         // When
         Predicate result = specification.toPredicate(root, query, cb);
+
+        //then
+        assertNull(result);
     }
 }
