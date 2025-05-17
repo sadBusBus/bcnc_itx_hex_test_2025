@@ -21,11 +21,6 @@ La arquitectura hexagonal aplicada en este proyecto busca:
 - **Independencia del dominio**: La lógica de negocio (en el módulo `service`) está aislada de los detalles de implementación.
 - **Modularidad**: Cada funcionalidad externa está encapsulada en su propio módulo dentro de `driven`.
 
-## Flujo de Operación
-
-1. Las solicitudes entran al sistema a través de los adaptadores primarios (`driving`).
-2. Estas solicitudes se pasan al dominio (`service`), donde se aplica la lógica de negocio.
-3. Si es necesario, el dominio utiliza puertos que se implementan en los adaptadores secundarios (`driven`) para interactuar con sistemas externos.
 
 ## Gestión del Proyecto
 
