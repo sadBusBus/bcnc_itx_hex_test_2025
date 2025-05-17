@@ -15,6 +15,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,16 +34,20 @@ public class PriceDbAdapterTest {
     private static final Long BRAND_ID = 1L;
 
     @Test
-    public void testGetPrice_verifyRepositoryCall() {
+    public void testGetPriceVerifyRepositoryCall() {
         // Arrange
         PriceSpecification specification = PriceSpecification.of(null, PRODUCT_ID, BRAND_ID);
+        PriceMO priceMO = PriceMO.builder().price(23D).currency("EUR").build();
+        Price expectedPrice = Price.builder().build();
 
-        when(repository.findOne(any(Specification.class))).thenReturn(Optional.of(PriceMO.builder().price(23D).currency("EUR").build()));
-        when(priceDbMapper.toDomain(any(PriceMO.class))).thenReturn(Price.builder().build());
+        when(repository.findOne(any(Specification.class))).thenReturn(Optional.of(priceMO));
+        when(priceDbMapper.toDomain(priceMO)).thenReturn(expectedPrice);
 
         // Act
-        priceDbAdapter.getPrice(null, PRODUCT_ID, BRAND_ID);
+        Price result = priceDbAdapter.getPrice(null, PRODUCT_ID, BRAND_ID);
 
+        // Assert
+        assertSame(expectedPrice, result);
     }
 
 }
