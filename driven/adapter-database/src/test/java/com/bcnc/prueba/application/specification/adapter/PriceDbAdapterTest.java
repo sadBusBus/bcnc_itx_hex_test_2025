@@ -1,4 +1,4 @@
-package com.bcnc.prueba.adapter;
+package com.bcnc.prueba.application.specification.adapter;
 
 import com.bcnc.prueba.application.adapter.PriceDbAdapter;
 import com.bcnc.prueba.application.mapper.PriceDatabaseMapper;

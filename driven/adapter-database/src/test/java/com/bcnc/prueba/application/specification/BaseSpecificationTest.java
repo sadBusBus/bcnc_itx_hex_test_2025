@@ -1,6 +1,5 @@
-package com.bcnc.prueba.specification;
+package com.bcnc.prueba.application.specification;
 
-import com.bcnc.prueba.application.specification.BaseSpecification;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -9,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
@@ -32,10 +35,14 @@ class BaseSpecificationTest {
     @Mock
     protected Predicate predicate;
 
+
     @Test
     void shouldAddPredicate() {
         // when
         baseSpecification.addPredicate(predicate);
+        // then
+        List<Predicate> predicateList = baseSpecification.predicates;
+        assertEquals(1, predicateList.size());
     }
 
     @Test
@@ -44,5 +51,8 @@ class BaseSpecificationTest {
         given(cb.and(any())).willReturn(predicate);
         // when
         Predicate result = baseSpecification.buildPredicate(cb);
+        // then
+        assertNull(result);
     }
+
 }

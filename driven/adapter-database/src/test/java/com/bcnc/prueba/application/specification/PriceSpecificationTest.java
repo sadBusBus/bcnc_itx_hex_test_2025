@@ -1,4 +1,4 @@
-package com.bcnc.prueba.specification;
+package com.bcnc.prueba.application.specification;
 
 import com.bcnc.prueba.application.model.PriceMO;
 import com.bcnc.prueba.application.specification.impl.PriceSpecification;
