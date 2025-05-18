@@ -2,9 +2,9 @@ name: Java CI with Maven build
 
 on:
     push:
-        branches: [ "main" ]
+        branches: [ "master" , "main" ]
     pull_request:
-        branches: [ "main" ]
+        branches: [ "master" , "main" ]
 
 jobs:
     build:
@@ -23,4 +23,15 @@ jobs:
             - name: Build with Maven
               run: mvn clean install -e -X
             - name: Maven test
-              run: mvn test
+              run: mvn
+            - name: Guardar logs de Maven como artefacto
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: logs-maven-${{ github.run_id }}
+                  path: |
+                    **/target/surefire-reports/
+                    **/target/failsafe-reports/
+                  retention-days: 10
+
+
