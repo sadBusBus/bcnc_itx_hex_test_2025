@@ -5,7 +5,7 @@ Este proyecto está organizado siguiendo los principios de la **Arquitectura Hex
 
 ### Módulos Principales
 
-1. **Boot**: El módulo de arranque que inicializa toda la aplicación y configura los componentes.
+1. **Boot**: El módulo de arranque que inicializa toda la aplicación y configura los componentes , tiene los test de integracion.
 
 2. **Service**: Contiene el dominio de la aplicación y la lógica de negocio, siguiendo los principios de Domain-Driven Design (DDD).
 
@@ -106,3 +106,7 @@ El módulo `boot` es responsable de:
 3. **Dominio → Adaptador Secundario**: El dominio utiliza los puertos de salida, implementados por adaptadores secundarios
 4. **Dominio → Adaptador Primario**: El resultado regresa al adaptador primario
 5. **Adaptador Primario → Response**: El adaptador primario transforma y entrega la respuesta al cliente
+
+
+To change profiles 
+- -Dspring.profiles.active=observability

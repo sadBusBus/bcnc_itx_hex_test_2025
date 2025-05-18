@@ -43,6 +43,17 @@ spring:
         enabled: true
     mandatory-file-encoding: UTF-8
 
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info,prometheus,metrics
+    endpoint:
+        health:
+            show-details: always
+        prometheus:
+            enabled: true
+
 server:
     port: 8080
 
