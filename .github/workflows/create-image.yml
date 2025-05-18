@@ -37,7 +37,7 @@ jobs:
                 image: jusjussadddd/bcnc_itx_test
                 tags: latest
                 registry: docker.io
-                dockerfile: Dockerfile
+                dockerfile: boot/Dockerfile
                 username: ${{ secrets.DOCKER_USERNAME }}
                 password: ${{ secrets.DOCKER_PASSWORD }}
 
