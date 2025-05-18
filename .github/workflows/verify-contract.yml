@@ -19,6 +19,9 @@ jobs:
                   distribution: 'temurin'
                   cache: maven
 
+            - name: Verify OpenAPI file
+              run: ls -R driving/api-rest/openapi/ || echo "OpenAPI file not found"
+
             - name: Verificar estructura de archivos OpenAPI
               run: ls -la driving/api-rest/openapi/ driving/api-rest/openapi/models/
 

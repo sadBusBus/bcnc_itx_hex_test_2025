@@ -2,9 +2,9 @@ name: Java CI with Maven build
 
 on:
     push:
-        branches: ['*']
+        branches: ['master' , 'main']
     pull_request:
-        branches: ['*']
+        branches: ['master' , 'main']
 
 jobs:
     build:
@@ -31,5 +31,14 @@ jobs:
                     **/target/surefire-reports/
                     **/target/failsafe-reports/
                   retention-days: 10
+            - name: Build & push Docker image
+              uses: mr-smithers-excellent/docker-build-push@v5
+              with:
+                image: jusjussadddd/bcnc_itx_test
+                tags: latest
+                registry: docker.io
+                dockerfile: Dockerfile
+                username: ${{ secrets.DOCKER_USERNAME }}
+                password: ${{ secrets.DOCKER_PASSWORD }}
 
 
