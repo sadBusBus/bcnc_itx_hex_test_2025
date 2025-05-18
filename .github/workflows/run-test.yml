@@ -2,9 +2,9 @@ name: Java CI with Maven build
 
 on:
     push:
-        branches: ['*']
+        branches: ['*', '!master', '!main']
     pull_request:
-        branches: ['*']
+        branches: ['*', '!master', '!main']
 
 jobs:
     build:
