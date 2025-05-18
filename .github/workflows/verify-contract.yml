@@ -55,7 +55,7 @@ jobs:
                   done
 
             - name: Comprobar validación específica del proyecto
-              run: mvn validate -pl driving/api-rest -DskipTests || echo "La validación no pasó, pero continuamos para generar artefactos."
+              run: mvn validate -pl driving/adapter-rest -DskipTests || echo "La validación no pasó, pero continuamos para generar artefactos."
 
             - name: Guardar resultados de la validación
               if: always()
