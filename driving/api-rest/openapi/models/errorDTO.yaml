@@ -1,0 +1,20 @@
+components:
+    schemas:
+        ErrorResponseDto:
+            type: object
+            properties:
+                error:
+                    $ref: '#/components/schemas/ErrorDto'
+        ErrorDto:
+            type: object
+            properties:
+                code:
+                    type: string
+                locale:
+                    type: string
+                description:
+                    type: string
+                details:
+                    type: array
+                    items:
+                        type: string

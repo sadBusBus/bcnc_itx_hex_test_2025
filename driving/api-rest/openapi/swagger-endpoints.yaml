@@ -43,37 +43,37 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/PriceDTO"
+                                $ref: './models/priceDTO.yaml#/components/schemas/PriceDTO'
                 "400":
                     description: No content
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/ErrorResponseDto"
+                                $ref: './models/errorDTO.yaml#/components/schemas/ErrorResponseDto'
                 "401":
                     description: Unauthorized
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/ErrorResponseDto"
+                                $ref: './models/errorDTO.yaml#/components/schemas/ErrorResponseDto'
                 "403":
                     description: Forbidden
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/ErrorResponseDto"
+                                $ref: './models/errorDTO.yaml#/components/schemas/ErrorResponseDto'
                 "404":
                     description: Not Found
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/ErrorResponseDto"
+                                $ref: './models/errorDTO.yaml#/components/schemas/ErrorResponseDto'
                 "500":
                     description: Internal Server Error
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/ErrorResponseDto"
+                                $ref: './models/errorDTO.yaml#/components/schemas/ErrorResponseDto'
     /api/v1/echo:
         get:
             tags:
@@ -88,46 +88,4 @@ paths:
                             schema:
                                 type: string
 components:
-    schemas:
-        PriceDTO:
-            type: object
-            properties:
-                productId:
-                    type: integer
-                    format: int64
-                brandId:
-                    type: integer
-                    format: int64
-                priceList:
-                    type: integer
-                    format: int64
-                startDate:
-                    type: string
-                    format: date-time
-                    x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssXXX")'
-                endDate:
-                    type: string
-                    format: date-time
-                    x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssXXX")'
-                price:
-                    type: string
-                brandName:
-                    type: string
-        ErrorResponseDto:
-            type: object
-            properties:
-                error:
-                    $ref: '#/components/schemas/ErrorDto'
-        ErrorDto:
-            type: object
-            properties:
-                code:
-                    type: string
-                locale:
-                    type: string
-                description:
-                    type: string
-                details:
-                    type: array
-                    items:
-                        type: string
+    schemas: {}

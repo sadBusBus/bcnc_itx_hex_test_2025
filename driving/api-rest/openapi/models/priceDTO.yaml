@@ -1,0 +1,26 @@
+components:
+    schemas:
+        PriceDTO:
+            type: object
+            properties:
+                productId:
+                    type: integer
+                    format: int64
+                brandId:
+                    type: integer
+                    format: int64
+                priceList:
+                    type: integer
+                    format: int64
+                startDate:
+                    type: string
+                    format: date-time
+                    x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssXXX")'
+                endDate:
+                    type: string
+                    format: date-time
+                    x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssXXX")'
+                price:
+                    type: string
+                brandName:
+                    type: string
