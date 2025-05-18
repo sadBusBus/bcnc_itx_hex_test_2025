@@ -23,7 +23,7 @@ jobs:
             - name: Build with Maven
               run: mvn clean install -e -X
             - name: Maven test
-              run: mvn
+              run: mvn test
             - name: Guardar logs de Maven como artefacto
               if: always()
               uses: actions/upload-artifact@v4
