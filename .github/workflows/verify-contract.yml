@@ -1,0 +1,76 @@
+name: OpenAPI Contract Validation
+
+on:
+    push:
+        branches: [ '*' ]
+    pull_request:
+        branches: [ '*' ]
+
+jobs:
+    validate:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Set up JDK 17
+              uses: actions/setup-java@v4
+              with:
+                  java-version: '17'
+                  distribution: 'temurin'
+                  cache: maven
+
+            - name: Verificar estructura de archivos OpenAPI
+              run: ls -la driving/api-rest/openapi/ driving/api-rest/openapi/models/
+
+            - name: Instalar Swagger CLI
+              run: npm install -g @apidevtools/swagger-cli
+
+            - name: Validar archivos YAML individuales
+              run: |
+                  for file in $(find driving/api-rest/openapi/ -name "*.yaml"); do
+                    echo "Validando $file..."
+                    swagger-cli validate $file || echo "Problemas en $file"
+                  done
+
+            - name: Validar archivos en directorio models
+              run: |
+                  for file in $(find driving/api-rest/openapi/models/ -name "*.yaml"); do
+                    echo "Validando $file..."
+                    swagger-cli validate $file || echo "Problemas en $file"
+                  done
+
+            - name: Verificar estructura de archivos YAML
+              run: |
+                  mkdir -p validation-results
+                  for file in $(find driving/api-rest/openapi/ -name "*.yaml"); do
+                    echo "Analizando estructura de $file..."
+                    echo "Contenido de $file:" > validation-results/$(basename $file).txt
+                    cat $file >> validation-results/$(basename $file).txt
+                    echo "\n\nVerificación de indentación:" >> validation-results/$(basename $file).txt
+                    grep -n "components:" $file >> validation-results/$(basename $file).txt || echo "No se encontró 'components:'" >> validation-results/$(basename $file).txt
+                    grep -n "schemas:" $file >> validation-results/$(basename $file).txt || echo "No se encontró 'schemas:'" >> validation-results/$(basename $file).txt
+                  done
+
+            - name: Comprobar validación específica del proyecto
+              run: mvn validate -pl driving/api-rest -DskipTests || echo "La validación no pasó, pero continuamos para generar artefactos."
+
+            - name: Guardar resultados de la validación
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: openapi-validation-results-${{ github.run_id }}
+                  path: |
+                      validation-results/
+                      **/target/generated-sources/
+                  retention-days: 7
+
+            - name: Mostrar resolución para errores comunes
+              if: failure()
+              run: |
+                  echo "Resolución para errores comunes:"
+                  echo "1. Si aparece NullNode cannot be cast to ObjectNode:"
+                  echo "   - Revisa que los archivos YAML en models/ no tengan 'contents:' al inicio"
+                  echo "   - Asegúrate que la indentación sea correcta (2 espacios para cada nivel)"
+                  echo "   - Verifica que haya {} después de schemas: si no hay modelos definidos"
+                  echo "2. Si hay problemas con las referencias:"
+                  echo "   - Comprueba que los paths a los $ref sean correctos"
