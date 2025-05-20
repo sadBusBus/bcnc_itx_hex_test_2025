@@ -31,6 +31,9 @@ public class PriceSpecification extends BaseSpecification<PriceMO> {
         if (brandId != null) {
             predicates.add(searchByBrandId(brandId, root, criteriaBuilder));
         }
+
+        query.orderBy(criteriaBuilder.desc(root.get("priority")));
+
         return buildPredicate(criteriaBuilder);
     }
 
@@ -48,6 +51,7 @@ public class PriceSpecification extends BaseSpecification<PriceMO> {
             List<Predicate> predicates = new ArrayList<>();
             predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("startDate"), dateTime));
             predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("endDate"), dateTime));
+
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
 
         }
