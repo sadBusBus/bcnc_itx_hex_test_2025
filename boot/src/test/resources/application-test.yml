@@ -28,7 +28,7 @@ spring:
 
     jpa:
         properties:
-            javax:
+            jakarta:
                 persistence:
                     lock:
                         timeout: 25000

@@ -3,14 +3,12 @@ package com.bcnc.prueba.application.specification;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
-
-
 import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @param <MO> Target model entity of the specificaiton
+ * @param <MO> Target model entity of the specification
  */
 public abstract class BaseSpecification<MO> implements Specification<MO> {
 

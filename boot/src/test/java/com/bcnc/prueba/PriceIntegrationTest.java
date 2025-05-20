@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @ActiveProfiles("test")
-public class PriceIntegrationTest {
+class PriceIntegrationTest {
 
     @Autowired
     private TestRestTemplate restTemplate;

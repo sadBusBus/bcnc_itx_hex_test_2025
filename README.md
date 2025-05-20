@@ -110,3 +110,69 @@ El módulo `boot` es responsable de:
 
 To change profiles 
 - -Dspring.profiles.active=observability
+
+## 🔍 Filosofía de Diseño
+
+La arquitectura hexagonal implementada en este proyecto proporciona:
+
+- **Independencia de frameworks**: El dominio no depende de bibliotecas externas
+- **Testabilidad**: Fácil creación de pruebas unitarias por la separación de componentes
+- **Flexibilidad tecnológica**: Capacidad de reemplazar componentes sin afectar el núcleo
+- **Evolución sostenible**: Cada parte puede evolucionar de forma independiente
+
+### Decisiones Arquitectónicas Clave
+
+#### 1. Aislamiento del Dominio
+- El módulo `service` contiene lógica de negocio pura
+- No existen dependencias de frameworks en el dominio
+- Las reglas de negocio son independientes de la infraestructura
+
+#### 2. Diseño Orientado a Interfaces
+- La comunicación entre capas se realiza mediante puertos (interfaces)
+- Los adaptadores implementan interfaces definidas por el dominio
+- El flujo de control va desde el exterior hacia el interior
+
+#### 3. Separación Estricta de Módulos
+- Cada módulo tiene dependencias claramente definidas
+- Los cambios en un adaptador no afectan a otros componentes
+- Facilita el desarrollo en paralelo por equipos diferentes
+
+## 🔄 Flujo de Datos y Operaciones
+
+1. **Request → Adaptador Primario**: Las solicitudes HTTP llegan a controladores REST
+2. **Adaptador Primario → Dominio**: Los controladores transforman y delegan al dominio
+3. **Dominio → Adaptador Secundario**: El dominio utiliza puertos para acceder a recursos externos
+4. **Dominio → Adaptador Primario**: El resultado se devuelve al adaptador primario
+5. **Adaptador Primario → Response**: Se genera la respuesta HTTP al cliente
+
+## 💼 Gestión del Proyecto
+
+- **Modularidad Maven**: Estructura multi-módulo para delimitación clara de responsabilidades
+- **CI/CD**: Flujo de integración continua mediante GitHub Actions
+- **Convenciones de código**: Estándares de codificación y documentación consistentes
+
+## 🚀 Ejecución del Proyecto
+
+### Requisitos Previos
+- Java 11 o superior
+- Maven 3.6.x o superior
+
+### Comandos Principales
+
+bash
+# Compilar el proyecto
+mvn clean package
+# Ejecutar con perfil por defecto
+mvn spring-boot:run -pl boot
+# Ejecutar con perfil específico
+mvn spring-boot:run -pl boot -Dspring.profiles.active=observability
+
+
+### Perfiles Disponibles
+- **default**: Configuración estándar para desarrollo
+- **observability**: Incluye configuraciones para monitoreo y trazabilidad
+
+## 📊 Colección Postman
+Se incluye una colección Postman para probar los endpoints de la API.
+
+---

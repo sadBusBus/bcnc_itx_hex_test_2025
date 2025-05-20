@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PriceDbAdapterTest {
+class PriceDbAdapterTest {
 
     @InjectMocks
     private PriceDbAdapter priceDbAdapter;
@@ -34,7 +34,7 @@ public class PriceDbAdapterTest {
     private static final Long BRAND_ID = 1L;
 
     @Test
-    public void testGetPriceVerifyRepositoryCall() {
+     void testGetPriceVerifyRepositoryCall() {
         // Arrange
         PriceSpecification specification = PriceSpecification.of(null, PRODUCT_ID, BRAND_ID);
         PriceMO priceMO = PriceMO.builder().price(23D).currency("EUR").build();

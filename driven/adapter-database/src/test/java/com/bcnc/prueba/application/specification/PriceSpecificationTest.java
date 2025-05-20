@@ -117,6 +117,9 @@ class PriceSpecificationTest {
 
         // When
         Predicate result = specification.toPredicate(root, query, cb);
+
+        // Then
+        assertNull(result);
     }
 
     @Test
