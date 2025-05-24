@@ -34,6 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @ActiveProfiles("test")
+@Sql(scripts = "/data/insert_test_prices.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 class PriceIntegrationTest {
 
     @Autowired
@@ -69,7 +70,6 @@ class PriceIntegrationTest {
     }
 
     @Test
-    @Sql("/data/insert_test_prices.sql")
     void shouldReturnPriceWhenValidParameters() {
         // Given
         String url = "/api/v1/price?dateTime=2023-06-14T10:00:00Z&productId=35455&brandId=1";
@@ -87,7 +87,6 @@ class PriceIntegrationTest {
     }
 
     @Test
-    @Sql("/data/insert_test_prices.sql")
     void shouldReturn404WhenPriceNotFound() {
         // Given
         String notFoundUrl = "/api/v1/price?dateTime=2023-06-14T00:00:00Z&productId=99999&brandId=1";

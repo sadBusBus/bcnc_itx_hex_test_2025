@@ -1,7 +1,6 @@
 package com.bcnc.prueba.application.adapter;
 
 import com.bcnc.prueba.application.exception.NotFoundException;
-import com.bcnc.prueba.application.mapper.PriceDatabaseMapper;
 import com.bcnc.prueba.application.ports.driven.PriceDbPort;
 import com.bcnc.prueba.application.repository.PriceDbRepository;
 import com.bcnc.prueba.domain.model.Price;
@@ -18,7 +17,6 @@ import static com.bcnc.prueba.application.exception.ErrorCodes.PRICE_NOT_FOUND;
 @RequiredArgsConstructor
 public class PriceDbAdapter implements PriceDbPort {
     private final PriceDbRepository repository;
-    private final PriceDatabaseMapper priceDbMapper;
 
     @Override
     public Price findPriceByDateProductAndBrand(OffsetDateTime dateTime, Long productId, Long brandId) {

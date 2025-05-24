@@ -1,7 +1,6 @@
 package com.bcnc.prueba.application.specification.adapter;
 
 import com.bcnc.prueba.application.adapter.PriceDbAdapter;
-import com.bcnc.prueba.application.mapper.PriceDatabaseMapper;
 import com.bcnc.prueba.application.repository.PriceDbRepository;
 import com.bcnc.prueba.domain.model.Price;
 import org.junit.jupiter.api.Test;
@@ -21,9 +20,6 @@ class PriceDbAdapterTest {
 
     @Mock
     private PriceDbRepository repository;
-
-    @Mock
-    private PriceDatabaseMapper priceDbMapper;
 
     private static final Long PRODUCT_ID = 35455L;
     private static final Long BRAND_ID = 1L;
