@@ -26,10 +26,10 @@
 
         <!-- ThirdParty Dependencies -->
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
-        <mapstruct.version>1.5.5.Final</mapstruct.version> <!-- Aligned version -->
+        <mapstruct.version>1.6.3</mapstruct.version> <!-- Aligned version -->
         <logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
         <!-- Lombok Properties -->
-        <lombok.version>1.18.30</lombok.version>
+        <lombok.version>1.18.32</lombok.version>
         <!-- JaCoCo Properties -->
         <jacoco.version>0.8.8</jacoco.version>
         <jacoco.haltOnFailure>false</jacoco.haltOnFailure>
