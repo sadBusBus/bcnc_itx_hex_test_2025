@@ -18,7 +18,7 @@ public class PriceController implements PriceApi {
     private final PriceMapper priceMapper;
 
     @Override
-    public ResponseEntity<PriceDTO> getPrice(OffsetDateTime dateTime, Long productId, Long brandId) {
-        return ResponseEntity.ok(priceMapper.toDto(priceServicePort.getPrice(dateTime,productId,brandId)));
+    public ResponseEntity<PriceDTO> findPriceByDateProductAndBrand(OffsetDateTime dateTime, Long productId, Long brandId) {
+        return ResponseEntity.ok(priceMapper.toDto(priceServicePort.findPriceByDateProductAndBrand(dateTime,productId,brandId)));
     }
 }

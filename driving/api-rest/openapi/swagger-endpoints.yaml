@@ -12,12 +12,12 @@ tags:
     - name: Echo
       description: API testeo CICD
 paths:
-    /api/v1/price:
+    /api/v1/prices:
         get:
             tags:
                 - Price
-            summary: Te saluda.
-            operationId: getPrice
+            summary: Te devuelve el precio en un intervalo de tiempo a partir del productId and brandId.
+            operationId: findPriceByDateProductAndBrand
             parameters:
                 - name: dateTime
                   in: query

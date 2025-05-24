@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -68,20 +69,34 @@ class PriceIntegrationTest {
     }
 
     @Test
-    void getPriceIntegrationTest() {
+    @Sql("/data/insert_test_prices.sql")
+    void shouldReturnPriceWhenValidParameters() {
+        // Given
         String url = "/api/v1/price?dateTime=2020-06-14T00:00:00Z&productId=35455&brandId=1";
 
-        ResponseEntity<String> rawResponse = restTemplate.getForEntity(url, String.class);
-        System.out.println("Raw response: " + rawResponse.getBody());
-        System.out.println("Status code: " + rawResponse.getStatusCode());
-
+        // When
         ResponseEntity<Price> response = restTemplate.getForEntity(url, Price.class);
+
+        // Then
         assertEquals(HttpStatus.OK, response.getStatusCode(), "Expected HTTP 200 OK");
         Price price = response.getBody();
         assertNotNull(price, "Price should not be null");
+        assertEquals(35455L, price.getProductId(), "Product ID should match");
+        assertEquals(1L, price.getBrandId(), "Brand ID should match");
+    }
 
+    @Test
+    @Sql("/data/insert_test_prices.sql")
+    void shouldReturn404WhenPriceNotFound() {
+        // Given
         String notFoundUrl = "/api/v1/price?dateTime=2020-06-14T00:00:00Z&productId=99999&brandId=1";
+
+        // When
         ResponseEntity<String> errorResponse = restTemplate.getForEntity(notFoundUrl, String.class);
+
+        // Then
         assertEquals(HttpStatus.NOT_FOUND, errorResponse.getStatusCode(), "Expected HTTP 404 Not Found");
     }
+
+
 }

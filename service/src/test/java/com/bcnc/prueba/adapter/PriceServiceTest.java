@@ -37,14 +37,14 @@ class PriceServiceTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("providePriceTestCases")
-    void testGetPrice(String testDescription, String dateTime, Long expectedPriceList, String expectedPrice) {
+    void shouldReturnCorrectPriceForSpecificDateAndProduct(String testDescription, String dateTime, Long expectedPriceList, String expectedPrice) {
         // Arrange
         OffsetDateTime requestDateTime = OffsetDateTime.parse(dateTime);
         Price mockPrice = createMockPrice(expectedPriceList, expectedPrice);
-        when(priceDbPort.getPrice(requestDateTime, PRODUCT_ID, BRAND_ID)).thenReturn(mockPrice);
+        when(priceDbPort.findPriceByDateProductAndBrand(requestDateTime, PRODUCT_ID, BRAND_ID)).thenReturn(mockPrice);
 
         // Act
-        Price result = priceService.getPrice(requestDateTime, PRODUCT_ID, BRAND_ID);
+        Price result = priceService.findPriceByDateProductAndBrand(requestDateTime, PRODUCT_ID, BRAND_ID);
 
         // Assert
         assertNotNull(result);
@@ -53,7 +53,7 @@ class PriceServiceTest {
         assertEquals(BRAND_NAME, result.getBrandName());
         assertEquals(expectedPriceList, result.getPriceList());
         assertEquals(expectedPrice, result.getPrice());
-        verify(priceDbPort, times(1)).getPrice(requestDateTime, PRODUCT_ID, BRAND_ID);
+        verify(priceDbPort, times(1)).findPriceByDateProductAndBrand(requestDateTime, PRODUCT_ID, BRAND_ID);
     }
 
     private static Stream<Arguments> providePriceTestCases() {

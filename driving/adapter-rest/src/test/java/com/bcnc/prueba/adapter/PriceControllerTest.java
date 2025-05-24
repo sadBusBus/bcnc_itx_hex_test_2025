@@ -37,17 +37,17 @@ class PriceControllerTest {
 
     @ParameterizedTest
     @MethodSource("providePriceTestCases")
-    void testGetPrice(String dateTime, Long expectedPriceList, String expectedPrice, String startDate, String endDate) {
+    void shouldReturnFindPriceByDateProductAndBrandWhenValidParameters(String dateTime, Long expectedPriceList, String expectedPrice, String startDate, String endDate) {
         // Arrange
         OffsetDateTime requestDateTime = OffsetDateTime.parse(dateTime);
         Price price = createPrice(expectedPriceList, expectedPrice, startDate, endDate);
         PriceDTO priceDTO = createPriceDTO(expectedPriceList, expectedPrice, startDate, endDate);
 
-        when(priceServicePort.getPrice(requestDateTime, PRODUCT_ID, BRAND_ID)).thenReturn(price);
+        when(priceServicePort.findPriceByDateProductAndBrand(requestDateTime, PRODUCT_ID, BRAND_ID)).thenReturn(price);
         when(priceMapper.toDto(price)).thenReturn(priceDTO);
 
         // Act
-        PriceDTO result = priceController.getPrice(requestDateTime, PRODUCT_ID, BRAND_ID).getBody();
+        PriceDTO result = priceController.findPriceByDateProductAndBrand(requestDateTime, PRODUCT_ID, BRAND_ID).getBody();
 
         // Assert
         assertEquals(PRODUCT_ID, result.getProductId());
@@ -56,7 +56,7 @@ class PriceControllerTest {
         assertEquals(expectedPrice, result.getPrice());
 
         // Verify
-        verify(priceServicePort, times(1)).getPrice(requestDateTime, PRODUCT_ID, BRAND_ID);
+        verify(priceServicePort, times(1)).findPriceByDateProductAndBrand(requestDateTime, PRODUCT_ID, BRAND_ID);
         verify(priceMapper, times(1)).toDto(price);
     }
 

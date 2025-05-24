@@ -17,7 +17,7 @@ public class PriceService implements PriceServicePort {
 
     @Override
     @Transactional
-    public Price getPrice(OffsetDateTime dateTime, Long productId, Long brandId) {
-        return priceDbPort.getPrice(dateTime, productId, brandId);
+    public Price findPriceByDateProductAndBrand(OffsetDateTime dateTime, Long productId, Long brandId) {
+        return priceDbPort.findPriceByDateProductAndBrand(dateTime, productId, brandId);
     }
 }
