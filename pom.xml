@@ -27,11 +27,9 @@
         <!-- ThirdParty Dependencies -->
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <mapstruct.version>1.6.3</mapstruct.version> <!-- Aligned version -->
-        <logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
         <!-- Lombok Properties -->
         <lombok.version>1.18.32</lombok.version>
         <!-- JaCoCo Properties -->
-        <jacoco.version>0.8.8</jacoco.version>
         <jacoco.haltOnFailure>false</jacoco.haltOnFailure>
         <jacoco.line.coverage.limit>0.90</jacoco.line.coverage.limit>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -47,9 +45,6 @@
         <jacoco.version>0.8.10</jacoco.version>
         <pitest-maven.version>1.15.0</pitest-maven.version>
         <pitest-junit5-plugin.version>1.2.0</pitest-junit5-plugin.version>
-
-        <!-- Dependency versions -->
-        <spring-boot.version>2.7.17</spring-boot.version>
         <micrometer.version>1.10.2</micrometer.version>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
 </properties>
