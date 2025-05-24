@@ -72,7 +72,7 @@ class PriceIntegrationTest {
     @Test
     void shouldReturnPriceWhenValidParameters() {
         // Given
-        String url = "/api/v1/price?dateTime=2023-06-14T10:00:00Z&productId=35455&brandId=1";
+        String url = "/api/v1/prices?dateTime=2023-06-14T10:00:00Z&productId=35455&brandId=1";
 
         // When
         ResponseEntity<Price> response = restTemplate.getForEntity(url, Price.class);
@@ -89,7 +89,7 @@ class PriceIntegrationTest {
     @Test
     void shouldReturn404WhenPriceNotFound() {
         // Given
-        String notFoundUrl = "/api/v1/price?dateTime=2023-06-14T00:00:00Z&productId=99999&brandId=1";
+        String notFoundUrl = "/api/v1/prices?dateTime=2023-06-14T00:00:00Z&productId=99999&brandId=1";
 
         // When
         ResponseEntity<String> errorResponse = restTemplate.getForEntity(notFoundUrl, String.class);
