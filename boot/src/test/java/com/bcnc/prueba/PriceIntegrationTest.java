@@ -72,7 +72,7 @@ class PriceIntegrationTest {
     @Sql("/data/insert_test_prices.sql")
     void shouldReturnPriceWhenValidParameters() {
         // Given
-        String url = "/api/v1/price?dateTime=2020-06-14T00:00:00Z&productId=35455&brandId=1";
+        String url = "/api/v1/price?dateTime=2023-06-14T10:00:00Z&productId=35455&brandId=1";
 
         // When
         ResponseEntity<Price> response = restTemplate.getForEntity(url, Price.class);
@@ -83,13 +83,14 @@ class PriceIntegrationTest {
         assertNotNull(price, "Price should not be null");
         assertEquals(35455L, price.getProductId(), "Product ID should match");
         assertEquals(1L, price.getBrandId(), "Brand ID should match");
+        assertEquals(1L, price.getPriceList(), "Price list should match");
     }
 
     @Test
     @Sql("/data/insert_test_prices.sql")
     void shouldReturn404WhenPriceNotFound() {
         // Given
-        String notFoundUrl = "/api/v1/price?dateTime=2020-06-14T00:00:00Z&productId=99999&brandId=1";
+        String notFoundUrl = "/api/v1/price?dateTime=2023-06-14T00:00:00Z&productId=99999&brandId=1";
 
         // When
         ResponseEntity<String> errorResponse = restTemplate.getForEntity(notFoundUrl, String.class);
