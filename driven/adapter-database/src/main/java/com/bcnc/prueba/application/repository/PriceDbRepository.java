@@ -1,7 +1,7 @@
 package com.bcnc.prueba.application.repository;
 
 import com.bcnc.prueba.application.model.PriceMO;
-import com.bcnc.prueba.domain.model.Price;
+import com.bcnc.prueba.application.projections.PriceProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface PriceDbRepository extends JpaRepository<PriceMO, Long>, JpaSpecificationExecutor<PriceMO> {
 
-    @Query("SELECT new com.bcnc.prueba.domain.model.Price(" +
+    @Query("SELECT new com.bcnc.prueba.application.projections.PriceProjection(" +
         "p.productId, " +
         "p.brandId, " +
         "p.priceList, " +
@@ -29,7 +29,7 @@ public interface PriceDbRepository extends JpaRepository<PriceMO, Long>, JpaSpec
         "AND :dateTime BETWEEN p.startDate AND p.endDate " +
         "ORDER BY p.priority DESC " +
         "LIMIT 1")
-    Optional<Price> findPriceByDateProductAndBrand(
+    Optional<PriceProjection> findPriceByDateProductAndBrand(
         @Param("dateTime") OffsetDateTime dateTime,
         @Param("productId") Long productId,
         @Param("brandId") Long brandId);
