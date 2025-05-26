@@ -1,4 +1,4 @@
-name: Java CI with Maven build
+name: Java CI con Maven (Arquitectura Hexagonal)
 
 on:
     push:
@@ -12,33 +12,50 @@ jobs:
 
         steps:
             - uses: actions/checkout@v4
+
             - name: Set up JDK 17
               uses: actions/setup-java@v4
               with:
                   java-version: '17'
                   distribution: 'temurin'
                   cache: maven
-            - name: Build with Maven including AOT processing
-              run: mvn clean install spring-boot:process-aot -pl boot -e
-            - name: Maven test
+
+            - name: Construir proyecto (módulos por orden)
+              run: |
+                  # Primero construimos el proyecto padre para instalar dependencias compartidas
+                  mvn clean install -N
+
+                  # Luego construimos el módulo de dominio (service)
+                  mvn clean install -pl service
+
+                  # Después construimos los adaptadores (driving y driven)
+                  mvn clean install -pl adapter-rest,adapter-database
+
+                  # Finalmente construimos el módulo de arranque (boot)
+                  mvn clean install -pl boot
+
+            - name: Aplicar procesamiento AOT (si es necesario)
+              run: mvn spring-boot:process-aot -pl boot
+
+            - name: Ejecutar pruebas
               run: mvn test
+
             - name: Guardar logs de Maven como artefacto
               if: always()
               uses: actions/upload-artifact@v4
               with:
                   name: logs-maven-${{ github.run_id }}
                   path: |
-                    **/target/surefire-reports/
-                    **/target/failsafe-reports/
+                      **/target/surefire-reports/
+                      **/target/failsafe-reports/
                   retention-days: 10
+
             - name: Build & push Docker image
               uses: mr-smithers-excellent/docker-build-push@v5
               with:
-                image: jusjussadddd/bcnc_itx_test
-                tags: latest
-                registry: docker.io
-                dockerfile: boot/Dockerfile
-                username: ${{ secrets.DOCKER_USERNAME }}
-                password: ${{ secrets.DOCKER_PASSWORD }}
-
-
+                  image: jusjussadddd/bcnc_itx_test
+                  tags: latest
+                  registry: docker.io
+                  dockerfile: boot/Dockerfile
+                  username: ${{ secrets.DOCKER_USERNAME }}
+                  password: ${{ secrets.DOCKER_PASSWORD }}
