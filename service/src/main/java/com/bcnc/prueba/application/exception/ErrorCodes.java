@@ -1,15 +1,19 @@
+/*
+ * Copyright (c) 2025 BCNC.
+ * All rights reserved.
+ */
 package com.bcnc.prueba.application.exception;
 
 import lombok.Getter;
 
 @Getter
 public enum ErrorCodes {
-    GENERIC_ERROR("PRUEBA01"),
-    PRICE_NOT_FOUND("PRUEBA02");
+  GENERIC_ERROR("PRUEBA01"),
+  PRICE_NOT_FOUND("PRUEBA02");
 
-    private final String code;
+  private final String code;
 
-    ErrorCodes(String code) {
-        this.code = code;
-    }
+  ErrorCodes(String code) {
+    this.code = code;
+  }
 }

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2025 BCNC.
+ * All rights reserved.
+ */
 package com.bcnc.prueba.application.config;
 
 import com.bcnc.prueba.application.exception.BadRequestException;
@@ -16,42 +20,33 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RequiredArgsConstructor
 public class ApiExceptionHandler {
 
-    private final MessagesService messagesService;
+  private final MessagesService messagesService;
 
-    @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<ErrorHandler> handleNotFoundException(NotFoundException ex) {
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(createError(ex));
-    }
+  @ExceptionHandler(value = NotFoundException.class)
+  public ResponseEntity<ErrorHandler> handleNotFoundException(NotFoundException ex) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(createError(ex));
+  }
 
-    @ExceptionHandler(value = BadRequestException.class)
-    public ResponseEntity<ErrorHandler> handleBadRequestException(BadRequestException ex) {
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(createError(ex));
-    }
+  @ExceptionHandler(value = BadRequestException.class)
+  public ResponseEntity<ErrorHandler> handleBadRequestException(BadRequestException ex) {
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(createError(ex));
+  }
 
-    @ExceptionHandler(value = BusinessException.class)
-    public ResponseEntity<ErrorHandler> handleBusinessException(BusinessException ex) {
-        return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(createError(ex));
-    }
+  @ExceptionHandler(value = BusinessException.class)
+  public ResponseEntity<ErrorHandler> handleBusinessException(BusinessException ex) {
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(createError(ex));
+  }
 
-    @ExceptionHandler(value = ForbiddenException.class)
-    public ResponseEntity<ErrorHandler> handleForbiddenException(ForbiddenException ex) {
-        return ResponseEntity
-                .status(HttpStatus.FORBIDDEN)
-                .body(createError(ex));
-    }
+  @ExceptionHandler(value = ForbiddenException.class)
+  public ResponseEntity<ErrorHandler> handleForbiddenException(ForbiddenException ex) {
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(createError(ex));
+  }
 
-    private ErrorHandler createError(BusinessException ex) {
-        return ErrorHandler.builder()
-                .code(ex.getGenericErrorCode())
-                .locale(ex.getLocale())
-                .description(messagesService.getMessage(ex.getMessage(), ex.getMessageVariables()))
-                .build();
-    }
-
+  private ErrorHandler createError(BusinessException ex) {
+    return ErrorHandler.builder()
+        .code(ex.getGenericErrorCode())
+        .locale(ex.getLocale())
+        .description(messagesService.getMessage(ex.getMessage(), ex.getMessageVariables()))
+        .build();
+  }
 }

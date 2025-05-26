@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2025 BCNC.
+ * All rights reserved.
+ */
 package com.bcnc.prueba.application.config;
 
 import lombok.RequiredArgsConstructor;
@@ -10,14 +14,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class MessageConfig implements WebMvcConfigurer {
 
-    @Bean
-    public ReloadableResourceBundleMessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:messages/messages");
-        messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setFallbackToSystemLocale(true);
-        messageSource.setAlwaysUseMessageFormat(true);
-        messageSource.setCacheSeconds(5);
-        return messageSource;
-    }
+  @Bean
+  public ReloadableResourceBundleMessageSource messageSource() {
+    ReloadableResourceBundleMessageSource messageSource =
+        new ReloadableResourceBundleMessageSource();
+    messageSource.setBasename("classpath:messages/messages");
+    messageSource.setDefaultEncoding("UTF-8");
+    messageSource.setFallbackToSystemLocale(true);
+    messageSource.setAlwaysUseMessageFormat(true);
+    messageSource.setCacheSeconds(5);
+    return messageSource;
+  }
 }

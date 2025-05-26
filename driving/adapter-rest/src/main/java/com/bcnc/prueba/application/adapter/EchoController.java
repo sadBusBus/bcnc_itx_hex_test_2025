@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2025 BCNC.
+ * All rights reserved.
+ */
 package com.bcnc.prueba.application.adapter;
 
 import com.bcnc.api.EchoApi;
@@ -8,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class EchoController implements EchoApi {
-    @Override
-    public ResponseEntity<String> greetings() {
-        return ResponseEntity.ok("Greetings");
-    }
+  @Override
+  public ResponseEntity<String> greetings() {
+    return ResponseEntity.ok("Greetings");
+  }
 }

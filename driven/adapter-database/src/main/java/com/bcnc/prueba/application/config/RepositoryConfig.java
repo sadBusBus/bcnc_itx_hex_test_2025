@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2025 BCNC.
+ * All rights reserved.
+ */
 package com.bcnc.prueba.application.config;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -9,5 +13,4 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaAuditing(modifyOnCreate = false)
 @EnableJpaRepositories("com.bcnc.prueba.application.repository")
 @EntityScan("com.bcnc.prueba.application.model")
-public class RepositoryConfig {
-}
+public class RepositoryConfig {}
