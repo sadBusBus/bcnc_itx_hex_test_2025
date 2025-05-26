@@ -1,4 +1,4 @@
-name: Java CI con Maven (Arquitectura Hexagonal)
+name: Java CI con Maven, AOT y Project Leyden
 
 on:
     push:
@@ -20,24 +20,13 @@ jobs:
                   distribution: 'temurin'
                   cache: maven
 
-            - name: Construir proyecto (módulos por orden)
-              run: |
-                  # Primero construimos el proyecto padre para instalar dependencias compartidas
-                  mvn clean install -N
+            - name: Build completo con Maven
+              run: mvn clean install
 
-                  # Luego construimos el módulo de dominio (service)
-                  mvn clean install -pl service
-
-                  # Después construimos los adaptadores (driving y driven)
-                  mvn clean install -pl adapter-rest,adapter-database
-
-                  # Finalmente construimos el módulo de arranque (boot)
-                  mvn clean install -pl boot
-
-            - name: Aplicar procesamiento AOT (si es necesario)
+            - name: Procesamiento AOT para el módulo boot
               run: mvn spring-boot:process-aot -pl boot
 
-            - name: Ejecutar pruebas
+            - name: Maven test
               run: mvn test
 
             - name: Guardar logs de Maven como artefacto
