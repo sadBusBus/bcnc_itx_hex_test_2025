@@ -1,10 +1,10 @@
-name: Java CI con Maven, AOT y Project Leyden
+name: Java CI con Maven
 
 on:
     push:
-        branches: ['master' , 'main']
+        branches: ['master', 'main']
     pull_request:
-        branches: ['master' , 'main']
+        branches: ['master', 'main']
 
 jobs:
     build:
@@ -23,13 +23,10 @@ jobs:
             - name: Build completo con Maven
               run: mvn clean install
 
-            - name: Procesamiento AOT para el módulo boot
-              run: mvn spring-boot:process-aot -pl boot
-
             - name: Maven test
               run: mvn test
 
-            - name: Guardar logs de Maven como artefacto
+            - name: Guardar logs de Maven
               if: always()
               uses: actions/upload-artifact@v4
               with:

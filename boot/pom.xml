@@ -40,24 +40,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <jvmArguments>
-                        -XX:+AutoCreateSharedArchive
-                        -XX:SharedArchiveFile=app.jsa
-                    </jvmArguments>
-                </configuration>
                 <executions>
-                    <execution>
-                        <id>process-aot</id>
-                        <goals>
-                            <goal>process-aot</goal>
-                        </goals>
-                    </execution>
                     <execution>
                         <id>repackage</id>
                         <goals>
                             <goal>build-info</goal>
                             <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>process-aot</id>
+                        <goals>
+                            <goal>process-aot</goal>
                         </goals>
                     </execution>
                 </executions>
