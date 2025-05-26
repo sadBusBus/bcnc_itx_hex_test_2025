@@ -8,4 +8,9 @@ EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=3s CMD wget -q --spider http://localhost:8080/actuator/health || exit 1
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", \
+            "-XX:+AutoCreateSharedArchive", \
+            "-XX:SharedArchiveFile=/app/app.jsa", \
+            "-XX:+UseG1GC", \
+            "-XX:+UseStringDeduplication", \
+            "-jar", "app.jar"]
