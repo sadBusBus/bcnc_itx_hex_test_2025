@@ -36,12 +36,11 @@ jobs:
             - name: Verificar formato de código
               run: mvn spotless:check || echo "Problemas de formato detectados pero continuando con el build"
 
-            - name: Análisis SonarCloud
-              if: ${{ env.SONAR_TOKEN != '' }}
-              run: mvn sonar:sonar -Dsonar.projectKey=${{ github.repository_owner }}_${{ github.event.repository.name }}
+            - name: SonarCloud Scan
+              uses: SonarSource/sonarcloud-github-action@master
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
             - name: Guardar logs y reportes
               if: always()
