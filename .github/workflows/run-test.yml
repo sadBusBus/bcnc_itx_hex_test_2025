@@ -47,11 +47,6 @@ jobs:
                     -Dsonar.projectKey=sadBusBus_bcnc_itx_hex_test_2025 \
                     -Dsonar.organization=SONAR \
                     -Dsonar.host.url=https://sonarcloud.io
-              with:
-                  args: >
-                      -Dsonar.scanner.force-deprecated-ci-analysis=true
-                      -Dsonar.coverage.jacoco.xmlReportPaths=**/target/site/jacoco/jacoco.xml
-                      -Dsonar.java.coveragePlugin=jacoco
 
             - name: Guardar logs y reportes
               if: always()
