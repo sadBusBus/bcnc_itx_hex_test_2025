@@ -141,7 +141,7 @@
                                 <style>GOOGLE</style>
                             </googleJavaFormat>
                             <licenseHeader>
-                                <file>${project.basedir}/license-header.txt</file>
+                                <file>bcnc_itx_hex_test_2025/license-header.txt</file>
                             </licenseHeader>
                         </java>
                         <kotlin>
