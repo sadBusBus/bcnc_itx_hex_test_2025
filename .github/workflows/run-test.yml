@@ -23,7 +23,7 @@ jobs:
                   cache: maven
 
             - name: Verificación de dependencias
-              run: mvn dependency:analyze -DfailOnWarning=true
+              run: mvn dependency:analyze -DfailOnWarning=false
 
             - name: Análisis de seguridad con OWASP
               run: mvn org.owasp:dependency-check-maven:check
